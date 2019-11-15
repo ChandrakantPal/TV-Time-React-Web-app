@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import { withStyles, GridListTile,GridListTileBar, GridList, ListSubheader, Card, CardMedia,CardContent } from '@material-ui/core';
+import React, { Component } from 'react';
+import { withStyles, GridListTile,GridListTileBar, GridList} from '@material-ui/core';
 // import GridList from '@material-ui/core/GridList';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
@@ -35,7 +35,7 @@ class TV extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://api.tvmaze.com/schedule').then(res => {
+    axios.get('https://api.tvmaze.com/schedule').then(res => {
       console.log(res);
       const data = res.data;
       this.setState({tileData: data});
