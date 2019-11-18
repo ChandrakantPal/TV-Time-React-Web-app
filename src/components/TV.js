@@ -1,32 +1,9 @@
 import React, { Component } from 'react';
-import { withStyles, GridListTile,GridListTileBar, GridList} from '@material-ui/core';
-// import GridList from '@material-ui/core/GridList';
+import { GridListTile, GridListTileBar, GridList} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-// import Tvtile from './Tvtile';
 import axios from 'axios';
-// import tileData from './tileData';
-
-const styles = {
-  root: {
-    marginTop: '64px',
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-  },
-  gridList: {
-    width: 500,
-    height: 450,
-  },
-  gridListTile: {
-    width: '100%',
-    height: 'auto'
-  },
-  icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
-  },
-};
+import classes from './TV.module.css';
 
 
 class TV extends Component {
@@ -52,7 +29,7 @@ class TV extends Component {
   }
 
   render() {
-      const classes = this.props;
+      // const classes = this.props;
       const shows = this.state.tileData.map(tile => {
         let name;
         if(tile.show.network) {
@@ -65,14 +42,14 @@ class TV extends Component {
           //   <Tvtile  image={tile.show.image.medium} name={tile.name} />
           //   <img src={tile.show.image.medium} alt={tile.name} />
           // </Fragment>
-          <GridListTile key={tile.id} className={classes.gridListTile}>
-            <img src={tile.show.image.original} alt={tile.name} style={{width: '100%',height:'inherit'}}/>
+          <GridListTile key={tile.id} className={classes.column}>
+            <img src={tile.show.image.original} alt={tile.name} style={{ verticalAlign: 'middle', width: '100%', height: 'inherit'}}/>
             <GridListTileBar
               title={tile.show.name}
               subtitle={<div><div>{tile.season}x{tile.number} {tile.name}</div> <div>{tile.airdate}  {tile.airtime}</div><div>On:{name}</div></div>}
               actionIcon={
-                <IconButton aria-label={`info about ${tile.name}`} style={{color: 'rgba(255, 255, 255, 0.54)'}}>
-                  <InfoIcon />
+                <IconButton aria-label={`info about ${tile.name}`} style={{color: 'rgba(255, 255, 255, 0.54)', display: "table-cell"}} href={tile.show.officialSite} rel="noopener noreferrer" target="_blank">
+                  <InfoIcon/>
                 </IconButton>
                       }
                     />
@@ -80,8 +57,8 @@ class TV extends Component {
         )});
 
       return (
-        <div className={classes.root}>
-            <GridList cellHeight={500} cols={3}  className={classes.gridList}>
+        <div >
+            <GridList className={classes.row} cellHeight={500}>
                 {shows}
               </GridList>
             </div>
@@ -89,4 +66,4 @@ class TV extends Component {
   }
 }
 
-export default  withStyles(styles)(TV);
+export default  TV;
