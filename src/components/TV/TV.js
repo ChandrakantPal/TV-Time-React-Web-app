@@ -1,36 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { GridListTile, GridListTileBar, GridList} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-import axios from 'axios';
+// import axios from 'axios';
 import classes from './TV.module.css';
 
 
-class TV extends Component {
-  state = {
-    tileData: []
-  }
-
-  componentDidMount() {
-    axios.get('https://api.tvmaze.com/schedule').then(res => {
-      console.log(res);
-      const data = res.data;
-      this.setState({tileData: data});
-      console.log("CDM",this.state);
-    }).catch(err => {
-      console.log(err);
-      
-    })
-  }
-
-  componentDidUpdate() {
-    console.log("CDU",this.state);
-    
-  }
-
-  render() {
+const tv = (props) =>{
       // const classes = this.props;
-      const shows = this.state.tileData.map(tile => {
+      const shows = props.data.map(tile => {
         let name;
         if(tile.show.network) {
           name = tile.show.network.name;
@@ -38,10 +16,6 @@ class TV extends Component {
           name = tile.show.webChannel.name;
         }
         return (
-          // <Fragment key={tile.id}>
-          //   <Tvtile  image={tile.show.image.medium} name={tile.name} />
-          //   <img src={tile.show.image.medium} alt={tile.name} />
-          // </Fragment>
           <GridListTile key={tile.id} className={classes.column}>
             <img src={tile.show.image.original} alt={tile.name} style={{ verticalAlign: 'middle', width: '100%', height: 'inherit'}}/>
             <GridListTileBar
@@ -64,6 +38,5 @@ class TV extends Component {
             </div>
           );
   }
-}
 
-export default  TV;
+export default  tv;

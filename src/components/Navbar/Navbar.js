@@ -3,7 +3,7 @@ import {AppBar, Toolbar, Typography, withStyles} from '@material-ui/core';
 
 const styles = {
   appBar: {
-    background: '#054e45e6',
+    background: '#172837',
   },
   appTitle: {
     display: 'inline-block',

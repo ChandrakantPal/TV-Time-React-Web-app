@@ -1,0 +1,15 @@
+.searchBox{
+    display: flex;
+    vertical-align: middle;
+    outline: none;
+    align-items: center;
+    background: #425e79;
+
+}
+
+.searchInput {
+    background: #cbd1d6;
+    outline: none;
+    border-radius: 40px;
+    border:none;
+}
