@@ -1,16 +1,22 @@
 import React from 'react';
 import {AppBar, Toolbar, Typography, withStyles} from '@material-ui/core';
+import SearchBox from '../SearchBox/SearchBox';
 
 const styles = {
   appBar: {
     background: '#172837',
+    display: 'flex',
+    flexFlow: 'wrap',
+    alignItems: 'center'
   },
   appTitle: {
-    display: 'inline-block',
-    position: 'absolute',
-    padding: '16px',
+    display: 'inline-flex',
+    position: 'inherit',
+    padding: '0',
     left: '0',
-    fontSize: '20px'
+    fontSize: '2rem',
+    color: '#00b3b4',
+    textShadow: '3px 3px 0px rgba(0,0,0,0.5)',
   }
 }
 
@@ -21,8 +27,9 @@ const navbar = (props) => {
         <AppBar className={classes.appBar}  position="fixed">
           <Toolbar>
             <Typography  variant="inherit" color="inherit" className={classes.appTitle}>
-              <span role="img" aria-label="tv">📺</span>TV TIME<span role="img" aria-label="time">⏳</span>
+              <span role="img" aria-label="tv">📺</span>YourFlix
             </Typography>
+            <SearchBox {...props}/>
           </Toolbar>
         </AppBar>
     );

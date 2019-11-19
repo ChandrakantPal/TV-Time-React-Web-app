@@ -9,7 +9,7 @@ const searchBox = ({searchfield, searchChange, abortChange}) => {
             <div className={classes.searchBox} >
             <input 
                 type="search" 
-                placeholder="Search Shows... " 
+                placeholder="Search Shows" 
                 onChange={searchChange}
                 value={searchfield}
                 onAbort={abortChange}

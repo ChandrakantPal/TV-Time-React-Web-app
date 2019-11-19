@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-// import { Switch, Route } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
+import React, { Component, Fragment } from 'react';
 import TV from './components/TV/TV';
-import SearchBox from './components/SearchBox/SearchBox';
 import  axios  from 'axios';
+import Navbar from './components/Navbar/Navbar';
 
 class App extends Component {
 
@@ -17,20 +15,20 @@ class App extends Component {
 
   componentDidMount() {
     axios.get('https://api.tvmaze.com/schedule').then(res => {
-      console.log(res);
+      // console.log(res);
       const data = res.data;
       this.setState({tileData: data});
-      console.log("CDM",this.state);
+      // console.log("CDM",this.state);
     }).catch(err => {
       console.log(err);
       
     })
   }
 
-  componentDidUpdate() {
-    console.log("CDU",this.state);
+  // componentDidUpdate() {
+  //   console.log("CDU",this.state);
     
-  }
+  // }
 
   onSearchChange = (event) => {
     this.setState({ searchfield: event.target.value });  
@@ -45,13 +43,12 @@ class App extends Component {
       return (tile.show.name.toLowerCase().includes(this.state.searchfield.toLocaleLowerCase()))
     })
     return(
-      <Layout>
-        {/* <Switch>
-          <Route path='/' exact component={TV} />
-        </Switch> */}
-        <SearchBox searchChange={this.onSearchChange} searchfield={this.state.searchfield} abortChange={this.onAbortChange}/>
-        <TV data={filteredShows} />
-      </Layout>
+      <Fragment>
+        <Navbar searchChange={this.onSearchChange} searchfield={this.state.searchfield} abortChange={this.onAbortChange} />
+        <main style={{marginTop: '64px'}}>
+          <TV data={filteredShows} />
+        </main>
+      </Fragment>
     );
   }
 }
