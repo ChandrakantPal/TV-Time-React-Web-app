@@ -7,23 +7,30 @@ import classes from './TV.module.css';
 
 const tv = (props) =>{
       const shows = props.data.map(tile => {
-        let name;
+        const{id,season,number,airdate, airtime, name} = tile;
+        let network;
         if(tile.show.network) {
-          name = tile.show.network.name;
+          network = tile.show.network.name;
         } else {
-          name = tile.show.webChannel.name;
+          network = tile.show.webChannel.name;
+        }
+        let image;
+        if(tile.show.image) {
+          image = tile.show.image.original
+        } else {
+          image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8-T2J6JldYU163OGGGK3GOB9f8Fb-u2k-ntRKn5ozVs7eYX2i'
         }
         return (
-          <GridListTile key={tile.id} className={classes.column}>
-            <img src={tile.show.image.original} alt={tile.name} style={{ verticalAlign: 'middle', width: '100%', height: 'inherit'}}/>
+          <GridListTile key={id} className={classes.column}>
+            <img src={image} alt={name} style={{ verticalAlign: 'middle', width: '100%', height: 'inherit'}}/>
             <GridListTileBar
               style={{height: '80px'}}
               title={tile.show.name}
               subtitle={<div>
-                          <div>S{tile.season}E{tile.number}</div> 
-                          <div>{tile.name}</div>
-                          <div>{tile.airdate}  {tile.airtime}</div>
-                          <div>On: {name}</div>
+                          <div>S{season}E{number}</div> 
+                          <div>{name}</div>
+                          <div>{airdate}  {airtime}</div>
+                          <div>On: {network}</div>
                           </div>}
               actionIcon={
                 <IconButton aria-label={`info about ${tile.name}`} style={{color: 'rgba(255, 255, 255, 0.54)', display: "table-cell"}} href={tile.show.officialSite} rel="noopener noreferrer" target="_blank">
@@ -35,11 +42,11 @@ const tv = (props) =>{
         )});
 
       return (
-        <div >
+        <div>
             <GridList className={classes.row} cellHeight={500}>
                 {shows}
               </GridList>
-            </div>
+        </div>
           );
   }
 
