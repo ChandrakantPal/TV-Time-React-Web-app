@@ -1,38 +1,18 @@
 import React from 'react';
-import {AppBar, Toolbar, Typography, withStyles} from '@material-ui/core';
 import SearchBox from '../SearchBox/SearchBox';
-
-const styles = {
-  appBar: {
-    background: '#172837',
-    display: 'flex',
-    flexFlow: 'wrap',
-    alignItems: 'center'
-  },
-  appTitle: {
-    display: 'inline-flex',
-    position: 'inherit',
-    padding: '0',
-    left: '0',
-    fontSize: '2rem',
-    color: '#00b3b4',
-    textShadow: '3px 3px 0px rgba(0,0,0,0.5)',
-  }
-}
 
 const navbar = (props) => {
 
-  const { classes } = props;
-    return(
-        <AppBar className={classes.appBar}  position="fixed">
-          <Toolbar>
-            <Typography  variant="inherit" color="inherit" className={classes.appTitle}>
-              <span role="img" aria-label="tv">📺</span>YourFlix
-            </Typography>
+    return(        
+        <div className="ui menu fixed">
+          <div className="header">
+          <h4 class="ui large header"><span role="img" aria-label="tv">📺</span>YourFlix</h4>
+          </div>
+          <div className="ui category search item right">
             <SearchBox {...props}/>
-          </Toolbar>
-        </AppBar>
+          </div>
+        </div>
     );
 }
 
-export default withStyles(styles)(navbar);
+export default navbar;

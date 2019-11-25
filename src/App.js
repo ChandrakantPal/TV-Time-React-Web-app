@@ -46,7 +46,7 @@ class App extends Component {
     return(
       <Fragment>
         <Navbar searchChange={this.onSearchChange} searchfield={this.state.searchfield} abortChange={this.onAbortChange} />
-        <main style={{marginTop: '64px'}}>
+        <main style={{background: '#E0E0E1'}}>
           {this.state.loading? <div className={classes.loader}>Loading...</div>:<TV data={filteredShows}/>}
         </main>
       </Fragment>

@@ -1,51 +1,61 @@
 import React from 'react';
-import { GridListTile, GridListTileBar, GridList } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
-import classes from './TV.module.css';
 
 
 const tv = (props) =>{
       const shows = props.data.map(tile => {
         const{id,season,number,airdate, airtime, name} = tile;
+        // Info Error handling
         let network;
         if(tile.show.network) {
           network = tile.show.network.name;
         } else {
           network = tile.show.webChannel.name;
         }
+        let show_name;
+        tile.show.name ? show_name = tile.show.name : show_name = "Info Not Available"
+        let show_link;
+        tile.show.officialSite ? show_link = tile.show.officialSite : show_link = "/"; 
         let image;
-        if(tile.show.image) {
-          image = tile.show.image.original
-        } else {
-          image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8-T2J6JldYU163OGGGK3GOB9f8Fb-u2k-ntRKn5ozVs7eYX2i'
-        }
+        tile.show.image ? image = tile.show.image.original : image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8-T2J6JldYU163OGGGK3GOB9f8Fb-u2k-ntRKn5ozVs7eYX2i';
+        let show_season;
+        season ? show_season = season : show_season = "Info Not Available";
+        let episode;
+        number ? episode = number : episode = "Info Not Available";
+        let episode_name;
+        name ? episode_name = name : episode_name = "Info Not Available";
+        let air_date;
+        airdate ? air_date = airdate : air_date = "Info Not Available";
+        let air_time;
+        airtime ? air_time = airtime : air_time = "Info Not Available";
         return (
-          <GridListTile key={id} className={classes.column}>
-            <img src={image} alt={name} style={{ verticalAlign: 'middle', width: '100%', height: 'inherit'}}/>
-            <GridListTileBar
-              style={{height: '80px'}}
-              title={tile.show.name}
-              subtitle={<div>
-                          <div>S{season}E{number}</div> 
-                          <div>{name}</div>
-                          <div>{airdate}  {airtime}</div>
-                          <div>On: {network}</div>
-                          </div>}
-              actionIcon={
-                <IconButton aria-label={`info about ${tile.name}`} style={{color: 'rgba(255, 255, 255, 0.54)', display: "table-cell"}} href={tile.show.officialSite} rel="noopener noreferrer" target="_blank">
-                  <InfoIcon/>
-                </IconButton>
-                      }
-                    />
-                  </GridListTile>
+          <div key={id} className="ui centered card">
+            <a className="image" href={show_link} rel="noopener noreferrer" target="_blank">
+              <img src={image} alt={name} />
+            </a>
+            <div className="content">
+              <div className="header">{show_name}</div>
+              <div className="meta">
+                <a href={show_link} rel="noopener noreferrer" target="_blank">Show Link</a>
+                <p><span>S{show_season}E{episode}</span>
+                <br/>
+                <span>{episode_name}</span></p>
+              </div>
+            </div>
+            <div className="extra content">
+              <span className="right floated">
+                {air_date}  {air_time}
+              </span>
+              <span>
+                On: {network}
+              </span>
+            </div>
+          </div>
+          
         )});
 
       return (
-        <div>
-            <GridList className={classes.row} cellHeight={500}>
-                {shows}
-              </GridList>
+        <div className="ui link cards">
+          {shows}
         </div>
           );
   }

@@ -1,24 +1,21 @@
-import React, { Fragment } from 'react';
-import classes from './SearchBox.module.css';
-import SearchIcon from '@material-ui/icons/Search';
+import React from 'react';
+
 
 const searchBox = ({searchfield, searchChange, abortChange}) => {
     console.log(searchfield);
     return (
-        <Fragment >
-            <div className={classes.searchBox} >
+            <div className="ui transparent icon input">
             <input 
                 type="search" 
                 placeholder="Search Shows" 
                 onChange={searchChange}
                 value={searchfield}
                 onAbort={abortChange}
-                className={classes.searchInput}
+                className="prompt"
                 onSubmit={searchChange}
             />
-            <SearchIcon className={classes.searchButton}/>
+            <i className="search icon"></i>
             </div>
-        </Fragment>
     );
 }
 
