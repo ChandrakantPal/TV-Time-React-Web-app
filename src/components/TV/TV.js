@@ -28,7 +28,7 @@ const tv = (props) =>{
         let air_time;
         airtime ? air_time = airtime : air_time = "Info Not Available";
         return (
-          <div key={id} className="ui centered card">
+          <div key={id} className="ui black centered card">
             <a className="image" href={show_link} rel="noopener noreferrer" target="_blank">
               <img src={image} alt={name} />
             </a>
