@@ -14,7 +14,7 @@ const tv = (props) =>{
         let show_name;
         tile.show.name ? show_name = tile.show.name : show_name = "Info Not Available"
         let show_link;
-        tile.show.officialSite ? show_link = tile.show.officialSite : show_link = "/"; 
+        tile.show.officialSite ? show_link = tile.show.officialSite : show_link = null; 
         let image;
         tile.show.image ? image = tile.show.image.original : image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8-T2J6JldYU163OGGGK3GOB9f8Fb-u2k-ntRKn5ozVs7eYX2i';
         let show_season;

@@ -4,7 +4,7 @@ import SearchBox from '../SearchBox/SearchBox';
 const navbar = (props) => {
 
     return(        
-        <div className="ui menu fixed">
+        <div className="ui menu fixed" id="top">
           <div className="header">
           <h4 class="ui large header"><span role="img" aria-label="tv">📺</span>YourFlix</h4>
           </div>
